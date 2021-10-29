@@ -2,10 +2,11 @@
   <div class="home">
     <div v-if="typeof post != 'undefined'">
     <img alt="Vue logo" src="../assets/logo.png" />
-    //<div v-if="{{post.wx_code}} === 1">
-      <p>{{ description }}</p>
+    <div v-if="post.wx_code === 1">
+      <p>{{post.wx_desc}}</p>
       <p>hello??</p>
-   // </div>
+      <cloudy :description="post.wx_desc" />
+   </div>
     <img src="../assets/logo.png" />
       <p> The weather at Central Saint Martins is: {{post.wx_desc}} </p>
       <p> {{post.wx_code}} </p>
@@ -16,9 +17,10 @@
 </template>
 
 <script>
+import cloudy from "@/components/cloudy.vue";
 export default {
   components: {
-    
+    cloudy
   },
   data() {
     return {
