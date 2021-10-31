@@ -1,13 +1,66 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="app">
+    <div v-if="typeof post != 'undefined'">
+      <div v-if="post.wx_code === 60 || post.wx_code === 61 ||  post.wx_code === 62 || post.wx_code ===63 || post.wx_code === 64 || post.wx_code === 65 || post.wx_code === 66 || post.wx_code === 67|| post.wx_code === 21">
+        <rain :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
+      </div>
+      <div v-if="post.wx_code === 0">
+        <sunny :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
+      </div>
+      <div v-if="post.wx_code === 1 ">
+        <sunny_cloudy :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
+      </div>
+      <div v-if="post.wx_code === 2 || post.wx_code === 3">
+        <cloudy :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
+      </div>
     </div>
-    <router-view />
   </div>
 </template>
+<script>
+import rain from "@/components/rain.vue"
+import cloudy from "@/components/cloudy.vue";
+import sunny from "@/components/sunny.vue";
+import sunny_cloudy from "@/components/sunny_cloudy.vue";
+export default {
+  components: {
+    cloudy, rain, sunny, sunny_cloudy
+  },
+  data() {
+    return {
+      app_id: 'b7e8cc96',
+      api_key:'05126f4f85ac5bf5bdfedbcc6fa999d6',
+      csm_url: 'http://api.weatherunlocked.com/api/current/51.536479,-0.124296',
+      post: {},
+    };
+  },
 
+  methods: {
+    startRefreshingData() {
+        this.getData();
+        setInterval(() => this.getData(), 30000);
+    },
+    async getData() {
+      try {
+        console.log("Getting data");// print to console saying 'now i'll get data from api'
+        const response = await fetch(`${this.csm_url}?app_id=${this.app_id}&app_key=${this.api_key}`);
+        this.post = await response.json();
+        
+        console.log("Now have the data: ",this.post); // now we have the data and it is: 
+      } catch (error) {
+
+        console.log(error); 
+      }
+    },
+
+  },
+
+  created() {
+    //this.getData(); // this.startRefreshingData() once - this calls set interval - pass set interval a function and an interview
+    this.startRefreshingData(); 
+    console.log(this.post);
+  },
+};
+</script>
 <style lang="scss">
 @font-face {
   font-family: "Cloudy";
