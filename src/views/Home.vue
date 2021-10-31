@@ -32,13 +32,17 @@ export default {
   },
 
   methods: {
+    async startRefreshingData() {
+        this.getData();
+        setInterval(() => this.getData(), 30000);
+    },
     async getData() {
       try {
-        console.log("getting data:");// print to console saying 'now i'll get data from api'
+        console.log("Getting data");// print to console saying 'now i'll get data from api'
         const response = await fetch(`${this.csm_url}?app_id=${this.app_id}&app_key=${this.api_key}`);
         this.post = await response.json();
         
-        console.log("now have the data: ",this.post); // now we have the data and it is: 
+        console.log("Now have the data: ",this.post); // now we have the data and it is: 
       } catch (error) {
 
         console.log(error); 
@@ -48,8 +52,8 @@ export default {
   },
 
   created() {
-    this.getData(); // this.startRefreshingData() once - this calls set interval - pass set interval a function and an interview
-    // 
+    //this.getData(); // this.startRefreshingData() once - this calls set interval - pass set interval a function and an interview
+    this.startRefreshingData(); 
     console.log(this.post);
   },
 };
