@@ -17,6 +17,7 @@
   </div>
 </template>
 <script>
+// import components (with scoped css style)
 import rain from "@/components/rain.vue"
 import cloudy from "@/components/cloudy.vue";
 import sunny from "@/components/sunny.vue";
@@ -36,16 +37,18 @@ export default {
 
   methods: {
     startRefreshingData() {
-        this.getData();
+        // Calls the getData method every 30 seconds to keep the site updated 
+        this.getData(); // do initial call to API with getdata() functiono
         setInterval(() => this.getData(), 30000);
     },
     async getData() {
+      // calls the API
       try {
-        console.log("Getting data");// print to console saying 'now i'll get data from api'
+        console.log("Getting data");
         const response = await fetch(`${this.csm_url}?app_id=${this.app_id}&app_key=${this.api_key}`);
         this.post = await response.json();
         
-        console.log("Now have the data: ",this.post); // now we have the data and it is: 
+        console.log("Now have the data: ",this.post); 
       } catch (error) {
 
         console.log(error); 
@@ -55,9 +58,7 @@ export default {
   },
 
   created() {
-    //this.getData(); // this.startRefreshingData() once - this calls set interval - pass set interval a function and an interview
-    this.startRefreshingData(); 
-    console.log(this.post);
+    this.startRefreshingData(); // call the startrefreshingData method 
   },
 };
 </script>
