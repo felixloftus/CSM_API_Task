@@ -1,20 +1,15 @@
 <template>
   <div class="home">
     <div v-if="typeof post != 'undefined'">
-      <div v-if="post.wx_code === 60 || 61 ||  62 || 63 || 64 || 65 || 66 || 67">
-      <rain :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
-   </div>
-    <img alt="Vue logo" src="../assets/logo.png" />
+      <div v-if="post.wx_code === 60 || post.wx_code === 61 ||  post.wx_code === 62 || post.wx_code ===63 || post.wx_code === 64 || post.wx_code === 65 || post.wx_code === 66 || post.wx_code === 67">
+        <rain :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
+      </div>
+      <div v-if="post.wx_code === 0">
+        <sunny :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
+      </div>
     <div v-if="post.wx_code === 1">
-      <p>{{post.wx_desc}}</p>
-      <p>hello??</p>
-      <cloudy :description="post.wx_desc" />
-   </div>
-    <img src="../assets/logo.png" />
-      <p> The weather at Central Saint Martins is: {{post.wx_desc}} </p>
-      <p> {{post.wx_code}} </p>
-      <p>{{ post.temp_c }} Degrees C</p>
-      <p>{{ post.windspd_kmh }} Km/h</p>
+        <cloudy :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
+      </div>
     </div>
   </div>
 </template>
@@ -22,9 +17,10 @@
 <script>
 import rain from "@/components/rain.vue"
 import cloudy from "@/components/cloudy.vue";
+import sunny from "@/components/sunny.vue";
 export default {
   components: {
-    cloudy, rain
+    cloudy, rain, sunny
   },
   data() {
     return {
@@ -48,6 +44,7 @@ export default {
         console.log(error); 
       }
     },
+
   },
 
   created() {
