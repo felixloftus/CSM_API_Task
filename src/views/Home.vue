@@ -1,6 +1,9 @@
 <template>
   <div class="home">
     <div v-if="typeof post != 'undefined'">
+      <div v-if="post.wx_code === 60 || 61 ||  62 || 63 || 64 || 65 || 66 || 67">
+      <rain :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
+   </div>
     <img alt="Vue logo" src="../assets/logo.png" />
     <div v-if="post.wx_code === 1">
       <p>{{post.wx_desc}}</p>
@@ -17,10 +20,11 @@
 </template>
 
 <script>
+import rain from "@/components/rain.vue"
 import cloudy from "@/components/cloudy.vue";
 export default {
   components: {
-    cloudy
+    cloudy, rain
   },
   data() {
     return {
