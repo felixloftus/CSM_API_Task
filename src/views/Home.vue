@@ -8,7 +8,7 @@
         <sunny :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
       </div>
       <div v-if="post.wx_code === 1 ">
-        <cloudy :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
+        <sunny_cloudy :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
       </div>
       <div v-if="post.wx_code === 2 || post.wx_code === 3">
         <cloudy :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
@@ -21,9 +21,10 @@
 import rain from "@/components/rain.vue"
 import cloudy from "@/components/cloudy.vue";
 import sunny from "@/components/sunny.vue";
+import sunny_cloudy from "@/components/sunny_cloudy.vue";
 export default {
   components: {
-    cloudy, rain, sunny
+    cloudy, rain, sunny, sunny_cloudy
   },
   data() {
     return {
