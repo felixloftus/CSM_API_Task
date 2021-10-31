@@ -29,6 +29,6 @@ height: 90vh;
     }
 }
 #image{
-    width: 50vh;
+    width: 40vh;
 }
 </style>
