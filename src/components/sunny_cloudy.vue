@@ -1,9 +1,9 @@
 <template>
- <div id='sunny'>
+ <div id='sunny_cloudy'>
    <h1>The weather at Central Saint Martins is: <div id="desc_text">{{description}}</div></h1>
    <h1>The Temperature is: <div id="desc_text">{{temperature}} °C</div></h1>
    <h1>The Windspeed is: <div id="desc_text">{{windspeed}} km/h</div></h1>
-   <img id="image" src="../assets/sunny/2.jpg" />
+   <img id="image" src="../assets/sunny_cloudy/sunny_cloudy.jpeg" />
  </div>
 </template>
  
@@ -13,7 +13,7 @@ export default {
 }
 </script>
 <style lang="scss"  scoped>
-#sunny{
+#sunny_cloudy{
 //background-color: rgb(90, 90, 235);
 font-family: monospace;
 text-align: center;

@@ -1,13 +1,16 @@
 <template>
   <div class="home">
     <div v-if="typeof post != 'undefined'">
-      <div v-if="post.wx_code === 60 || post.wx_code === 61 ||  post.wx_code === 62 || post.wx_code ===63 || post.wx_code === 64 || post.wx_code === 65 || post.wx_code === 66 || post.wx_code === 67">
+      <div v-if="post.wx_code === 60 || post.wx_code === 61 ||  post.wx_code === 62 || post.wx_code ===63 || post.wx_code === 64 || post.wx_code === 65 || post.wx_code === 66 || post.wx_code === 67|| post.wx_code === 21">
         <rain :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
       </div>
       <div v-if="post.wx_code === 0">
         <sunny :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
       </div>
-    <div v-if="post.wx_code === 1">
+      <div v-if="post.wx_code === 1 ">
+        <cloudy :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
+      </div>
+      <div v-if="post.wx_code === 2 || post.wx_code === 3">
         <cloudy :description="post.wx_desc" :temperature="post.temp_c" :windspeed="post.windspd_kmh"/>
       </div>
     </div>
@@ -32,7 +35,7 @@ export default {
   },
 
   methods: {
-    async startRefreshingData() {
+    startRefreshingData() {
         this.getData();
         setInterval(() => this.getData(), 30000);
     },

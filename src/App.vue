@@ -9,6 +9,18 @@
 </template>
 
 <style lang="scss">
+@font-face {
+  font-family: "Cloudy";
+  src: url(./fonts/Cloudy/Alphasmoke-OOX6.ttf) format("truetype");
+}
+@font-face{
+  font-family: "Sunny";
+  src: url(./fonts/Sunny/101KidletSunshineBet-0OmG.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Rainy";
+  src: url(./fonts/Rainy/LcrRainyDaze-P3zg.ttf) format("truetype");
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
