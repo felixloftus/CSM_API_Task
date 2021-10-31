@@ -9,12 +9,12 @@
  
 <script>
 export default {
+// data taken from Api Call in App.vue
  props: ['description','temperature', 'windspeed']
 }
 </script>
 <style lang="scss"  scoped>
 #cloudy{
-//background-color: rgb(90, 90, 235);
 font-family: monospace;
 text-align: center;
 border-color: blue;
